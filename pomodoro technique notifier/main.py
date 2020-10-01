@@ -1,19 +1,20 @@
 from win10toast import ToastNotifier
 import winsound
-from tkinter import (Tk, Label, Entry, Frame, Button)
+from tkinter import (Tk, Label, Entry, Frame, Button, PhotoImage)
 import tkinter.font as tkFont
 import time
 
 
 # One-time initialization
 toaster = ToastNotifier()
+path_icon = "pomodoro technique notifier\logo.ico"
 
 
 def focus(timer):
     # Show notification whenever needed
     label = "Start Focusing " + str(timer) + " minutes"
     toaster.show_toast("Pomodoro Notification!", label, threaded=True,
-                       icon_path=None, duration=5)  # 3 seconds
+                       icon_path=path_icon, duration=5)  # 3 seconds
     winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
     time.sleep(timer*60)
 
@@ -24,7 +25,7 @@ def short_break_time(i, timer):
     label = "Take a short break " + \
         str(timer) + " minutes\n" + str(until-i) + " Pomodoro until long break"
     toaster.show_toast("Pomodoro Notification!", label, threaded=True,
-                       icon_path=None, duration=5)  # 3 seconds
+                       icon_path=path_icon, duration=5)  # 3 seconds
     winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
     time.sleep(timer*60)
 
@@ -32,14 +33,14 @@ def short_break_time(i, timer):
 def long_break_time(timer):
     label = "Take a long break " + str(timer) + " minutes"
     toaster.show_toast("Pomodoro Notification!", label, threaded=True,
-                       icon_path="logo.png", duration=5)  # 3 seconds
+                       icon_path=path_icon, duration=5)  # 3 seconds
     winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
     time.sleep(timer*60)
 
 
 def completed():
     toaster.show_toast("Pomodoro Notification!", "Taks is complete", threaded=True,
-                       icon_path="logo.ico", duration=5)  # 3 seconds
+                       icon_path=path_icon, duration=5)  # 3 seconds
     winsound.PlaySound("SystemExit", winsound.SND_ALIAS)
 
 
@@ -67,6 +68,8 @@ def start_pomodoro():
 
 app = Tk()
 app.title("Pomodoro")
+logo = PhotoImage(file='pomodoro technique notifier/logo.png')
+app.iconphoto(False, logo)
 app.geometry("200x220")
 app.configure(bg="white")
 bg_header = Frame(app, width=200, height=50, bg='#fb020c')
