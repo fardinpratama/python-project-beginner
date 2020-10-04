@@ -1,11 +1,13 @@
 from win10toast import ToastNotifier
 import winsound
-from tkinter import (Tk, Label, Entry, Frame, Button, PhotoImage)
+from tkinter import (Tk, Label, Entry, Frame, Button,
+                     PhotoImage, Checkbutton, IntVar)
 import tkinter.font as tkFont
 import time
+import website_blocker as wb
 
 
-# One-time initialization
+# set Notifier
 toaster = ToastNotifier()
 path_icon = "pomodoro technique notifier\logo.ico"
 
@@ -16,18 +18,20 @@ def focus(timer):
     toaster.show_toast("Pomodoro Notification!", label, threaded=True,
                        icon_path=path_icon, duration=5)  # 3 seconds
     winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
-    time.sleep(timer*60)
+    if var_1.get() == 1:
+        wb.web_blocker(timer)
+    else:
+        time.sleep(timer)
 
 
 def short_break_time(i, timer):
     until = 3
-    # Show notification whenever needed
     label = "Take a short break " + \
         str(timer) + " minutes\n" + str(until-i) + " Pomodoro until long break"
     toaster.show_toast("Pomodoro Notification!", label, threaded=True,
                        icon_path=path_icon, duration=5)  # 3 seconds
     winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
-    time.sleep(timer*60)
+    time.sleep(timer)
 
 
 def long_break_time(timer):
@@ -35,7 +39,7 @@ def long_break_time(timer):
     toaster.show_toast("Pomodoro Notification!", label, threaded=True,
                        icon_path=path_icon, duration=5)  # 3 seconds
     winsound.PlaySound("SystemHand", winsound.SND_ALIAS)
-    time.sleep(timer*60)
+    time.sleep(timer)
 
 
 def completed():
@@ -66,11 +70,12 @@ def start_pomodoro():
         app.deiconify()
 
 
+# design GUI APP
 app = Tk()
 app.title("Pomodoro")
 logo = PhotoImage(file='pomodoro technique notifier/logo.png')
 app.iconphoto(False, logo)
-app.geometry("200x220")
+app.geometry("200x245")
 app.configure(bg="white")
 bg_header = Frame(app, width=200, height=50, bg='#fb020c')
 bg_header.grid(row=0, column=0, columnspan=2)
@@ -106,19 +111,24 @@ input_long_break = Entry(app, width=8, fg="#fb020c")
 input_long_break.grid(row=4, column=1, sticky='w')
 input_long_break.insert(0, "15")
 
+# check button website blocker
+var_1 = IntVar()
+web_block = Checkbutton(app, text="Block Socmed",
+                        variable=var_1, bg='white', fg="#fb020c")
+web_block.grid(row=5, column=0)
+
 # set
 set_label = Label(
     app, text='Set', justify='left', bg='white', fg="#727272")
-set_label.grid(row=5, column=0)
+set_label.grid(row=6, column=0)
 input_set = Entry(app, width=4, fg="#727272")
-input_set.grid(row=5, column=0, sticky='e', padx=10)
+input_set.grid(row=6, column=0, sticky='e', padx=10)
 input_set.insert(0, "1")
 
-# button
 # start
 start = Button(
     app, text="start", command=start_pomodoro, bg='#fb020c', fg='white', width=5, font=fontstyle)
-start.grid(row=5, column=1, pady=5, padx=5, columnspan=2, sticky='w')
+start.grid(row=6, column=1, pady=5, padx=5, columnspan=2, sticky='w')
 
 
 app.mainloop()
