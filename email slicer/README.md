@@ -1,5 +1,5 @@
 ===============================================
-=============   Email Slicer    ===============
+================== Email Slicer ===============    
 ===============================================
 By: Fardin Pratama Yudha
 This program will retrieve the username and domain data from
