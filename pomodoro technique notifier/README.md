@@ -1,6 +1,6 @@
-*************************************************
-****         Pomodor Timer With Python       ****
-*************************************************
+=============================================
+Pomodor Timer With Python
+=============================================
 By : Fardin Pratama Yudha
 
 This application helps us manage time in doing
