@@ -4,6 +4,8 @@ Rock Paper Scissors Game
 
 By : Fardin Pratama Yudha
 
+![prototipe](https://user-images.githubusercontent.com/49685686/95313495-c6633480-08c2-11eb-9448-1d0880e0cecd.jpg)
+
 This is a simple suit game game that uses the "pygame" library as 
 its GUI and uses an object oriented programming paradigm. the workflow
 is to compare the player's choice with a random enemy selection using 
@@ -28,9 +30,11 @@ algorithm used:
     R - P = -1 (loss)
     R - S = -2 (win)
 
+
     P - P = 0 (draw)
     P - R = 1 (win)
     P - S = -1 (loss)
+
 
     S - S = 0 (draw)
     S - R = 2 (loss)
