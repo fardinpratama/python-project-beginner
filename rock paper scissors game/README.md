@@ -27,7 +27,7 @@ algorithm used:
 2. Take the "player" option then reduce it by the choice "enemy"
 3. analyze the results:
 
-    R - R = 0 ()
+    R - R = 0 (draw)
     R - P = -1 (loss)
     R - S = -2 (win)
     =================
